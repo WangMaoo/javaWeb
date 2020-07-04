@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function changeImg(object) {
+            object.src = "codeServlet?t="+new Date().getTime();
+
+        }
+    </script>
+</head>
+<body>
+<a href="cookieServlet">Cookie测试</a>
+<a href="getServlet">获取所有的cookie</a>
+<br>
+<a href="removeServlet">删除bbb的cookie</a>
+<br>
+<a href="download.html">跳转到下载界面</a>
+<br>
+<img src="codeServlet" alt="" onclick="changeImg(this)">
+
+<br>
+<a href="timeServlet">上一次的访问时间为:</a>
+</body>
+</html>

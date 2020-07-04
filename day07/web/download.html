@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function isIE(){
+            //获取当前浏览器相关信息
+            var explorer = window.navigator.userAgent.toLowerCase() ;
+            //判断是否是ie浏览器
+            if (explorer.indexOf("msie") >= 0 || explorer.indexOf("rv:11.0) like gecko") >=
+                0)     {
+                return true;
+            }else {
+                return false;
+            }
+        }
+        window.onload = function () {
+            if(isIE()){
+                //在是IE浏览器的情况下，对中文请求参数编码
+                var str = document.getElementById("ww").href;
+                str = encodeURI(str);
+                document.getElementById("ww").href = str;
+            }
+        };
+    </script>
+</head>
+<body>
+<h2>文件下载</h2>
+<a id="ww" href="download?filename=大数据简单理解.txt">大数据的简单理解(下载)</a> <br>
+</body>
+</html>

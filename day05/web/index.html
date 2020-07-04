@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<a href="download.html">下载链接</a>
+
+<!--<h1>首页...</h1>
+<a href="hello.html">hello页面</a> <br>-->
+<h3>操作request对象-请求行</h3>
+<a href="rowServlet?username=tom&pwd=123">获取请求行中的数据信息</a><br>
+<a href="headServlet?username=tom&pwd=123">获取请求头中的数据信息</a><br>
+
+<form action="paramsServlet" method="post">
+    用户名：<input type="text" name="username" value="tom"/>
+    用户名：<input type="password" name="password" value="123"/>
+    <input type="submit" value="提交">
+</form>
+
+<a href="forwardServlet?money=30">请求转发</a><br>
+</body>
+</html>

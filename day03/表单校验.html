@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单校验</title>
+    <script>
+        function checkForm() {
+            let flag = true;
+            let elementById = document.getElementById("username").value;
+            let zz = /^[a-zA-Z][a-zA-Z0-9]{2,17}$/;
+            if (!zz.test(elementById)) {
+                let elementById1 = document.getElementById("msgError");
+                elementById1.innerHTML = "<font color='red'>用户名不符合规范</font>";
+                flag = false;
+            } else {
+                let elementById1 = document.getElementById("msgError");
+                elementById1.innerHTML="<font color='green'>通过</font>";
+            }
+            return flag;
+        }
+    </script>
+</head>
+<body>
+<form onsubmit="return checkForm()">
+    用户名：<input type="text" id="username">
+    <span id="msgError"></span><br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        div > img{
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<script>
+    onload = function () {
+        setInterval("imgChange()",2000)
+
+    };
+    var i = 1;
+
+    function imgChange() {
+        var elementById = document.getElementById("imgId");
+        elementById.src = "../img/"+i+".jpg";
+        i++;
+        if (i == 5) {
+            i = 0;
+        }
+    }
+</script>
+
+<div>
+    <img src="../img/0.jpg" alt="" id="imgId">
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        function start() {
+            intervalId = setInterval("showTime()", 1000);
+        }
+
+        function showTime() {
+            let elementById = document.getElementById("clock");
+            elementById.innerHTML = new Date().toLocaleString();
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+        }
+    </script>
+</head>
+<body>
+    <h1 id="clock"></h1>
+        <input type="submit" value="开始" onclick="start()">
+        <input type="submit" value="暂停" onclick="stop()">
+
+</body>
+</html>

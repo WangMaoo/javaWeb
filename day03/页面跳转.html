@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function () {
+             interId = setInterval(f, 1000);
+        }
+        let i = 5;
+        function f() {
+            i--;
+            let elementById = document.getElementById("spanId");
+            elementById.innerText = i;
+            if (i == 1) {
+                clearInterval(interId);
+                location.href = "https://www.baidu.com/";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1><span id="spanId">5</span>秒后页面跳转</h1>
+</body>
+</html>

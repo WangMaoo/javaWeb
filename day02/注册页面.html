@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="stylesheet" href="js/login.css">
+</head>
+<!--1. 表格有四行，第一行和第四行跨2列，第一列占30%的宽度，第一行是标题th，第四行是放按钮。使用图片按钮
+2. table居中,宽300px，高180px; 边框solid 1px gray
+3. td的文字对齐居中，字体大小14px
+4. table添加背景，不平铺，图片背景的宽度和高度与table的宽和高一样。
+5. 用户名和密码文本框使用类样式，也可以使用其它选择器。宽150px，高32px，边框用实线，圆角5px，1个宽度，黑色
+6. 使用伪类样式，当鼠标移动到文本框上的时候，变成虚线橙色边框。得到焦点，背景色变成浅黄色
+7. 文本框前面有头像，密码框前面有键盘，左内边距35-->
+<body>
+    <form>
+        <table>
+            <tr>
+                <th colspan="2">
+                    黑马旅游注册
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    用户名:
+                </td>
+                <td>
+                    <input class="username" type="text" placeholder="请输入用户名">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    密码:
+                </td>
+                <td>
+                    <input class="pwd" type="password" placeholder="请输入密码">
+                </td>
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="image" src="img/btn.png" >
+                    </td>
+                </tr>
+        </table>
+    </form>
+</body>
+</html>

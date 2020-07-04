@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>诗歌</title>
+    <style>
+        div {
+            width: 400px;
+            font-size: 14px;
+            margin: auto;
+        }
+        h1 {
+            font-size: 18px;
+            color: #06F;
+            text-align: center;
+        }
+        p {
+            text-indent: 2em;
+            line-height: 22px;
+        }
+        #xiong {
+            font-weight: bold;
+            font-style: italic;
+            color: blue;
+        }
+        #last {
+            color: #390;
+            text-decoration: underline;
+        }
+        #last:hover {
+            /* 鼠标悬停是显示小手 */
+            cursor: pointer;
+        }
+        .mei {
+            font-weight: bold;
+            color: #F36;
+            font-size: 18px;
+        }
+        h1 span {
+            font-size: 12px;
+            color: #999;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <!--诗放在div的层中，宽400px，全文字体大小14px;
+2.标题放在h1中。每段文字放在p中
+3.标题文字大小18px，颜色#06F，居中对齐
+4.每段文字缩进2em
+5.段中的行高是22px
+6."胸怀中满溢着幸福，只因你就在我眼前",加粗，倾斜，蓝色
+7.最后一段，颜色#390; 下划线，鼠标移上去指针变化。
+8.美字加粗，颜色color:#F36，大小18px;
+9.文席慕容，三个字，12px，颜色#999，不加粗-->
+<div>
+    <h1>初相遇 <span>文/席慕容</span></h1>
+    <p><span class="mei">美</span>丽的梦和美丽的诗一样，都是可遇而不可求的，常常在最没能料到的时刻里出现。</p>
+    <p>我喜欢那样的梦，在梦里，一切都可以重新开始，一切都可以慢慢解释，心里甚至还能感觉到，
+        所有被浪费的时光竟然都能重回时的狂喜与感激。
+        <span id="xiong">胸怀中满溢着幸福，只因你就在我眼前</span>，对我微笑，一如当年。</p>
+    <p id="last">我喜欢那样的梦，明明知道你已为我跋涉千里，却又觉得芳草鲜美，落落英缤纷，好像你我才初相遇。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function checkAll(flag) {
+            var elementsByNames = document.getElementsByName("item");
+            for (let i = 0; i < elementsByNames.length; i++) {
+                elementsByNames[i].checked = flag;
+            }
+        }
+
+        function reverseSelect() {
+            var elementsByNames = document.getElementsByName("item");
+            for (let i = 0; i < elementsByNames.length; i++) {
+                elementsByNames[i].checked = !elementsByNames[i].checked;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>商品价格列表</h3>
+        <input type="checkbox" name="item" value="1500"/> 山地自行车1500<br/>
+        <input type="checkbox" name="item" value="200"/> 时尚女装200<br/>
+        <input type="checkbox" name="item" value="3000"/> 笔记本电脑3000元<br/>
+        <input type="checkbox" name="item" value="800"/> 情侣手表800<br/>
+        <input type="checkbox" name="item" value="2000"/> 桑塔纳2000<br/>
+        <hr/>
+        <!-- this: this写在哪个标签上,就代表那个标签对象 -->
+        <input type="checkbox" id="all" onclick="checkAll(this.checked)"/>全选/全不选 &nbsp;
+        <input type="button" id="reverse" onclick="reverseSelect()" value=" 反 选 "/>&nbsp;
+</body>
+</html>
