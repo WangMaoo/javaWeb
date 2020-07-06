@@ -27,6 +27,11 @@ public class PageBean<T> {
      */
     int totalPage;
 
+    public PageBean(int pageSize, int totalCount) {
+        this.pageSize = pageSize;
+        this.totalCount = totalCount;
+    }
+
     @Override
     public String toString() {
         return "PageBean{" +

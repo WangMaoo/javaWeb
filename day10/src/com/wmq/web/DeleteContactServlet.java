@@ -24,7 +24,7 @@ public class DeleteContactServlet extends HttpServlet {
         boolean b = contactService.deleteContact(id);
         //当删除成功后跳转到展示页面
         if (b) {
-            response.sendRedirect(request.getContextPath() + "/findContactAll");
+            response.sendRedirect(request.getContextPath() + "/findContactByPage?pageNumber=1&pageSize=3");
         } else {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }

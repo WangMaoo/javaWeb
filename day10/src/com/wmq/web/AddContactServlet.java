@@ -34,7 +34,7 @@ public class AddContactServlet extends HttpServlet {
              *        重定向的路径会改变
              */
             if (flag) {
-                response.sendRedirect(request.getContextPath() + "/findContactAll");
+                response.sendRedirect(request.getContextPath() + "/findContactByPage?pageNumber=1&pageSize=3");
             } else {
                 response.sendRedirect(request.getContextPath()+"/error.jsp");
             }

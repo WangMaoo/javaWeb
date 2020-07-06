@@ -31,7 +31,7 @@ public class UpdateContactServlet extends HttpServlet {
             boolean flag = service.updateContact(contact);
             //判断是否有数据，有数据就返回展示，没有跳转到错误界面
             if (flag) {
-                response.sendRedirect(request.getContextPath() + "/findContactAll");
+                response.sendRedirect(request.getContextPath() + "/findContactByPage?pageNumber=1&pageSize=3");
             } else {
                 response.sendRedirect(request.getContextPath() + "/error.jsp");
             }

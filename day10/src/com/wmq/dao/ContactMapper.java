@@ -18,7 +18,7 @@ public interface ContactMapper {
 
     /**
      * 添加用户
-      * @param contact
+     * @param contact
      * @return
      */
     @Insert("insert into contact values(null,#{name},#{sex},#{age},#{address},#{qq},#{email})")
@@ -47,5 +47,21 @@ public interface ContactMapper {
      */
     @Delete("delete from contact where id = #{id}")
     int deleteContact(@Param("id") String id);
+
+    /**
+     * 查询总的条数
+     * @return
+     */
+    @Select("select count(*) from contact")
+    int findAllContact();
+
+    /**
+     * 分页查询
+     * @param startIndex
+     * @param pageSize
+     * @return
+     */
+    @Select("select * from contact limit #{startIndex},#{pageSize}")
+    List<Contact> findContactByPage(@Param("startIndex") int startIndex,@Param("pageSize") int pageSize);
 
 }
