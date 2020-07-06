@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>购物车的实现</title>
+    <style type="text/css">
+        table {
+            width: 400px;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        td, th {
+            text-align: center;
+            height: 30px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            text-align: right;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        tr:hover {
+            background-color: lightyellow;
+        }
+    </style>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function addRow() {
+            var val = $("#productName").val();
+            if (val != "") {
+                $("#cart").append("<tr>\n" +
+                    "            <td><img src=\"../../img/sx.jpg\"/></td>\n" +
+                    "            <td>\n" +
+                    "                "+val+"\n" +
+                    "            </td>\n" +
+                    "            <td>\n" +
+                    "                <!--this表示当前按钮-->\n" +
+                    "                <input type=\"button\" value=\"删除\" onclick=\"deleteRow(this)\">\n" +
+                    "            </td>\n" +
+                    "        </tr>")
+            }
+        }
+
+        function deleteRow(nowTr) {
+            $(nowTr).parent().parent().remove()
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <table border="1">
+        <tbody id="cart">
+        <tr>
+            <th>
+                图片
+            </th>
+            <th>
+                商品名
+            </th>
+            <th>
+                操作
+            </th>
+        </tr>
+        <tr>
+            <td><img src="../../img/sx.jpg"/></td>
+            <td>
+                三星Note7
+            </td>
+            <td>
+                <!--this表示当前按钮-->
+                <input type="button" value="删除" onclick="deleteRow(this)">
+            </td>
+        </tr>
+        <tbody>
+    </table>
+    <br/>
+    商品名：
+    <input type="text" id="productName" value=""/>&nbsp;
+    <input type="button" value="添加到购物车" onclick="addRow()"/>
+</div>
+</body>
+</html>
