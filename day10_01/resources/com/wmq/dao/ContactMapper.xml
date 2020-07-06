@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wmq.dao.ContactMapper">
+    <!-- select 查询 -->
+	<!--<select id="findTotalCountBy_1" parameterType="contact" resultType="int">
+		select count(*) from contact
+		<where>
+            <if test="name!=null and name!=''">
+                and name like concat("%",#{name},"%")
+            </if>
+            <if test="qq!=null and qq!=''">
+                and qq like concat("%",#{qq},"%")
+            </if>
+        </where>
+	</select>
+    &lt;!&ndash; 查询当前页面的数据信息 &ndash;&gt;
+    <select id="findContactByPage_1" resultType="contact">
+        select * from contact
+        <where>
+            <if test="contact.name!=null and contact.name!=''">
+                and name like concat("%",#{contact.name},"%")
+            </if>
+            <if test="contact.qq!=null and contact.qq!=''">
+                and qq like concat("%",#{contact.qq},"%")
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>-->
+
+</mapper>

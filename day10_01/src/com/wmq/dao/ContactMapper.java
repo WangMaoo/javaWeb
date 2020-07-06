@@ -64,4 +64,30 @@ public interface ContactMapper {
     @Select("select * from contact limit #{startIndex},#{pageSize}")
     List<Contact> findContactByPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
+    @Select("<script>select count(*) from contact\n" +
+            "\t\t<where>\n" +
+            "            <if test=\"name!=null and name!=''\">\n" +
+            "                and name like concat(\"%\",#{name},\"%\")\n" +
+            "            </if>\n" +
+            "            <if test=\"qq!=null and qq!=''\">\n" +
+            "                and qq like concat(\"%\",#{qq},\"%\")\n" +
+            "            </if>\n" +
+            "        </where></script>")
+    int findTotalCountBy_1(Contact contact);
+
+    @Select("<script>" +
+            "select * from contact\n" +
+            "        <where>\n" +
+            "            <if test=\"contact.name!=null and contact.name!=''\">\n" +
+            "                and name like concat(\"%\",#{contact.name},\"%\")\n" +
+            "            </if>\n" +
+            "            <if test=\"contact.qq!=null and contact.qq!=''\">\n" +
+            "                and qq like concat(\"%\",#{contact.qq},\"%\")\n" +
+            "            </if>\n" +
+            "        </where>\n" +
+            "        limit #{startIndex},#{pageSize}" +
+            "</script>")
+    List<Contact> findContactByPage_1(@Param("startIndex") int startIndex,
+                                     @Param("pageSize") int pageSize,
+                                     @Param("contact") Contact contact);
 }

@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author Lenovo
+ */
 @WebServlet("/contact")
 public class ContactServlet extends HttpServlet {
     @Override
@@ -33,8 +37,36 @@ public class ContactServlet extends HttpServlet {
             deleteContactById(request,response);
         }else if("findContactByPage".equals(action)){
             findContactByPage(request,response);
+        } else if ("findContactByPage_1".equals(action)) {
+            findContactByPage_1(request,response);
         }
 
+    }
+
+    /**
+     * 按条件查询
+     * @param request
+     * @param response
+     */
+    private void findContactByPage_1(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            int pageSize = 3;
+            int pageNumber = 1;
+            pageSize = Integer.parseInt(request.getParameter("pageSize"));
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+            ContactService contactService = new ContactService();
+            //获取页面表单中的数据进行封装
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            Contact contact = new Contact();
+            BeanUtils.populate(contact,parameterMap);
+            //获取PageBean中的所有数据返回
+            PageBean<Contact> contactByPage_1 = contactService.findContactByPage_1(pageSize, pageNumber, contact);
+            request.setAttribute("pb",contactByPage_1);
+            request.setAttribute("contact",contact);
+            request.getRequestDispatcher("/pageList_1.jsp").forward(request,response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void findContactByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +77,7 @@ public class ContactServlet extends HttpServlet {
         ContactService contactService = new ContactService();
         PageBean contactByPage = contactService.findContactByPage(pageSize, pageNumber);
         request.setAttribute("pb",contactByPage);
-        request.getRequestDispatcher("pageList.jsp").forward(request,response);
+        request.getRequestDispatcher("pageList_1.jsp").forward(request,response);
     }
 
     private void deleteContactById(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -54,7 +86,7 @@ public class ContactServlet extends HttpServlet {
         boolean b = contactService.deleteContact(id);
         //当删除成功后跳转到展示页面
         if (b) {
-            response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage&pageNumber=1&pageSize=3");
+            response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage_1&pageNumber=1&pageSize=3");
         } else {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
@@ -69,7 +101,7 @@ public class ContactServlet extends HttpServlet {
             boolean flag = service.updateContact(contact);
             //判断是否有数据，有数据就返回展示，没有跳转到错误界面
             if (flag) {
-                response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage&pageNumber=1&pageSize=3");
+                response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage_1&pageNumber=1&pageSize=3");
             } else {
                 response.sendRedirect(request.getContextPath() + "/error.jsp");
             }
@@ -100,7 +132,7 @@ public class ContactServlet extends HttpServlet {
              *        重定向的路径会改变，不然刷新会重新执行一次
              */
             if (flag) {
-                response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage&pageNumber=1&pageSize=3");
+                response.sendRedirect(request.getContextPath() + "/contact?action=findContactByPage_1&pageNumber=1&pageSize=3");
             } else {
                 response.sendRedirect(request.getContextPath()+"/error.jsp");
             }

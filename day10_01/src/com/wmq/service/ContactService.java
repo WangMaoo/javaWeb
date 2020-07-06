@@ -67,4 +67,17 @@ public class ContactService {
         sqlSession.close();
         return pageBean;
     }
+
+    public PageBean<Contact> findContactByPage_1(int pageSize, int pageNumber, Contact contact) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        ContactMapper mapper = sqlSession.getMapper(ContactMapper.class);
+        int count = mapper.findTotalCountBy_1(contact);
+        PageBean pageBean = new PageBean(pageSize, count);
+        pageBean.setPageNumber(pageNumber);
+        int startIndex = (pageNumber-1)*pageSize;
+        List<Contact> contactByPage1 = mapper.findContactByPage_1(startIndex, pageSize, contact);
+        pageBean.setData(contactByPage1);
+        sqlSession.close();
+        return pageBean;
+    }
 }

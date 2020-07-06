@@ -32,6 +32,18 @@
     <h3 style="text-align: center">显示所有联系人</h3>
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
+            <th colspan="8">
+                <form action="/contact" method="post">
+                    <input type="hidden" name="action" value="findContactByPage_1">
+                    <input type="hidden" name="pageSize" value="3">
+                    <input type="hidden" name="pageNumber" value="1">
+                    姓名: <input type="text" name="name" value="${contact.name}"/>
+                    QQ: <input type="text" name="qq" value="${contact.qq}"/>
+                    <input class="btn btn-success" type="submit" value="查询">
+                </form>
+            </th>
+        </tr>
+        <tr class="success">
             <th>编号</th>
             <th>姓名</th>
             <th>性别</th>
@@ -50,14 +62,16 @@
             <td>${contact.address}</td>
             <td>${contact.qq}</td>
             <td>${contact.email}</td>
-            <td><a class="btn btn-default btn-sm" href="/findContactById?id=${contact.id}">修改</a>&nbsp;
-                <a class="btn btn-default btn-sm" href="/deleteContact?id=${contact.id}">删除</a></td>
+            <td>
+                <a class="btn btn-default btn-sm" href="/contact?action=findContactById&id=${contact.id}">修改</a>&nbsp;
+                <a class="btn btn-default btn-sm" href="JavaScript:deleteContactById(${contact.id})">删除</a></td>
         </tr>
     </c:forEach>
         <tr>
             <td colspan="8" align="center"><a class="btn btn-primary" href="/add.jsp">添加联系人</a></td>
         </tr>
     </table>
+    <%-- 分页条 --%>
     <nav class="text-center">
         <ul class="pagination">
             <%-- 上一页 --%>
@@ -65,7 +79,7 @@
                 <li class="disabled"><span>&laquo;</span></li>
             </c:if>
             <c:if test="${pb.pageNumber>1}">
-                <li><a href="findContactByPage?pageNumber=${pb.pageNumber-1}&pageSize=${pb.pageSize}" ><span>&laquo;</span></a></li>
+                <li><a href="/contact?action=findContactByPage_1&name=${contact.name}&qq=${contact.qq}&pageNumber=${pb.pageNumber-1}&pageSize=${pb.pageSize}" ><span>&laquo;</span></a></li>
             </c:if>
 
             <c:forEach begin="1" end="${pb.totalPage}" step="1" var="i">
@@ -73,19 +87,32 @@
                     <li class="active"><a href="JavaScript:void(0);">${i}</a></li>
                 </c:if>
                 <c:if test="${pb.pageNumber!=i}">
-                    <li><a href="findContactByPage?pageNumber=${i}&pageSize=${pb.pageSize}">${i}</a></li>
+                    <li><a href="/contact?action=findContactByPage_1&name=${contact.name}&qq=${contact.qq}&pageNumber=${i}&pageSize=${pb.pageSize}">${i}</a></li>
                 </c:if>
             </c:forEach>
+            <%-- 页码显示区 --%>
+           <%-- <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>--%>
 
             <%-- 下一页 --%>
             <c:if test="${pb.pageNumber>=pb.totalPage}">
                 <li class="disabled"><span>&raquo;</span></li>
             </c:if>
             <c:if test="${pb.pageNumber<pb.totalPage}">
-                <li><a href="findContactByPage?pageNumber=${pb.pageNumber+1}&pageSize=${pb.pageSize}"><span>&raquo;</span></a></li>
+                <li><a href="/contact?action=findContactByPage_1&name=${contact.name}&qq=${contact.qq}&pageNumber=${pb.pageNumber+1}&pageSize=${pb.pageSize}"><span>&raquo;</span></a></li>
             </c:if>
         </ul>
     </nav>
+    <script>
+        function deleteContactById(id) {
+            var flag = confirm("是否删除");
+            if(flag){
+                location.href = "/contact?action=deleteContact&id="+id;
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
