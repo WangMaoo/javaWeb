@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖小程序</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script language='javascript' type='text/javascript'>
+        //准备一个一维数组，装用户的像片路径
+        var imgs = [
+            "../../img/scenery/1.jpg","../../img/scenery/2.jpg","../../img/scenery/3.jpg",
+            "../../img/scenery/4.jpg","../../img/scenery/5.jpg","../../img/scenery/6.jpg",
+            "../../img/scenery/7.jpg","../../img/scenery/8.jpg","../../img/scenery/9.jpg",
+            "../../img/scenery/10.jpg","../../img/scenery/11.jpg","../../img/scenery/12.jpg",
+            "../../img/scenery/13.jpg","../../img/scenery/14.jpg","../../img/scenery/15.jpg",
+            "../../img/scenery/16.jpg","../../img/scenery/17.jpg","../../img/scenery/18.jpg",
+            "../../img/scenery/19.jpg","../../img/scenery/20.jpg","../../img/scenery/21.jpg"
+        ];
+    </script>
+    <script>
+        //当页面加载成功后,"点击停止"按钮失效
+        $(function () {
+            $("#stopID").attr("disabled",true);
+        });
+        var interId;
+        //给"点击开始"和"点击停止"按钮添加单击事件
+        //当点击"点击开始"按钮时
+        function imgStart() {
+            //让"点击开始"按钮失效
+            $("#startID").attr("disabled",true);
+            //让"点击停止"按钮生效
+            $("#stopID").attr("disabled",false);
+            //让小图开始轮播
+            interId = setInterval(changeImg,20);
+        }
+        var i = 0;
+        function changeImg() {
+            // Math.random() : 0 - 1
+            // Math.random() * 100 : 0.2132 - 100.12321
+            var number = parseInt(Math.random() * 100);
+            i = number % 21;
+            // 改变小图src的值
+            $("#img1ID").attr("src",imgs[i]);
+        }
+
+        //当点击"点击停止"按钮时:
+        function imgStop() {
+            //让"点击开始"按钮生效
+            $("#startID").attr("disabled",false);
+            //让"点击停止"按钮失效
+            $("#stopID").attr("disabled",true);
+            //让小图停止轮播
+            clearInterval(interId);
+            //延迟2秒后,将选中的小图展示到大图区域
+            setTimeout(showBigImg,2000);
+        }
+        function showBigImg() {
+            // 展示大图
+            $("#img2ID").attr("src",imgs[i]);
+        }
+    </script>
+</head>
+<body>
+<!-- 小像框 -->
+<div style="border-style:dotted;width:50px;height:50px">
+    <img id="img1ID" src="" style="width:50px;height:50px"/>
+</div>
+<!-- 大像框 -->
+<div style="border-style:double;width:700px;height:500px;position:absolute;left:500px;top:10px">
+    <img id="img2ID" src="" style="width:700px;height:500px"/>
+</div>
+
+<!-- 开始按钮 -->
+<input onclick="imgStart()" id="startID" type="button" value="点击开始" style="width:150px;height:150px;font-size:22px" >
+
+<!-- 停止按钮 -->
+<input onclick="imgStop()" id="stopID" type="button" value="点击停止" style="width:150px;height:150px;font-size:22px" >
+
+</body>
+</html>
