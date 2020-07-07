@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            var url = "/areaServlet"
+            var params = {"pid":1}
+            $.get(url,params,function (resultData) {
+                for (let i = 0;i< resultData.length;i++){
+                    var area = resultData[i];
+                    $("#province").append("<option value='"+area.id+"'>"+area.name+"</option>")
+                }
+            },"json")
+        })
+        function changeProvince(pid) {
+            var url = "/areaServlet"
+            var params = {"pid":pid}
+            $.get(url,params,function (resultData) {
+                $("#city").html("<option>==请选择==</option>")
+                $("#county").html("<option>==请选择==</option>")
+                for (let i = 0;i < resultData.length;i++){
+                    var area = resultData[i]
+                    $("#city").append("<option value='"+area.id+"'>"+area.name+"</option>")
+                }
+            },"json")
+        }
+        function changeCity(pid) {
+            var url = "/areaServlet"
+            var params = {"pid":pid}
+            $.get(url,params,function (resultData) {
+                for (let i = 0;i < resultData.length;i++){
+                    var area = resultData[i]
+                    $("#county").append("<option value='"+area.id+"'>"+area.name+"</option>")
+                }
+            },"json")
+        }
+    </script>
+</head>
+<body>
+    <select id="province" onchange="changeProvince(this.value)">
+        <option>---请选择---</option>
+    </select>
+    省
+    <select id="city" onchange="changeCity(this.value)">
+        <option>---请选择---</option>
+    </select>
+    市
+    <select id="county">
+        <option>---请选择---</option>
+    </select>
+    县
+</body>
+</html>

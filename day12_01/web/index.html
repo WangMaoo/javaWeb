@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#usernameId").blur(function () {
+                var name = $(this).val();
+                var url = "/ajaxServlet";
+                var params = {"name": name};
+                $.get(url, params, function (resultDate) {
+                    if (resultDate == 1) {
+                        $("#nameMsg").html("<font color='#7fff00'>√</font>");
+                        $("#subId").attr("disabled", false);
+                    } else {
+                        $("#nameMsg").html("<font color='red'>用户已注册</font>")
+                        $("#subId").attr("disabled", true);
+                    }
+                }, "text");
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="">
+    <table align="center" border="1px solid red" width="300px" height="100px">
+        <tr>
+            <th colspan="2" align="center">
+                用户表单
+            </th>
+        </tr>
+        <tr>
+            <td>用户名:</td>
+            <td>
+                <input type="text" id="usernameId" name="username">
+                <span id="nameMsg"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td>
+                <input type="password" name="pwd">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" id="subId" value="提交"/>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+</form>
+</body>
+</html>
