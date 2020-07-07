@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        // readyState存放ajax引擎对象的状态
+        //0 初始化请求
+        //1 建立连接
+        //2 接受请求
+        //3 处理请求
+        //4 返回响应
+        function ajaxTest() {
+            let xmlHttp;
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlHttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlHttp.onreadystatechange = function () {
+                //判断是否响应成功
+                if (xmlHttp.readyState ==4 && xmlHttp.status == 200) {
+                    //获取响应结果
+                    var textA = xmlHttp.responseText;
+                    //将服务器的信息写入
+                    document.getElementById("btn").innerText = textA;
+                }
+            }
+            //发送请求
+            xmlHttp.open("post","/ajaxServlet",true)
+            xmlHttp.send()
+        }
+    </script>
+</head>
+<body>
+    <input type="button" name="button_a" onclick="ajaxTest()" value="点击" >
+        <div id="btn"></div>
+</body>
+</html>
