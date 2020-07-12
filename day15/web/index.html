@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        function findCategory() {
+            let url = "/findCategory"
+            $.get(url,function (resultData) {
+                $("#categoryId").html("")
+                for (let i = 0; i < resultData.length; i++) {
+                    let category = resultData[i]
+                    $("#categoryId").append(`<tr><td>${category.cid}</td><td>${category.cname}</td><td>修改|删除</td></tr>`)
+                }
+            },"json")
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <button class="btn btn-success" onclick="findCategory()">查看所有分类</button>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <th>ID</th>
+                <th>分类</th>
+                <th>操作</th>
+            </thead>
+            <tbody id="categoryId">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
